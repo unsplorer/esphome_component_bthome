@@ -128,7 +128,7 @@ namespace esphome
             {
               bthome_measurement_event_record_t event_data{measurement_type, (uint8_t)((int)value & 0xff), (uint8_t)((int)value << 8 & 0xff)};
               // bthome_measurement_record_t data{false, .d = {.event = event_data}};
-             bthome_measurement_record_t data{ .flag = false, .d = { .event = event_data } };
+             bthome_measurement_record_t data{ .is_value = false, .d = { .event = event_data } };
 
               measurements.push_back(data);
               break;
@@ -138,7 +138,7 @@ namespace esphome
             default:
             {
               bthome_measurement_value_record_t value_data{measurement_type, value};
-              bthome_measurement_record_t data{ .flag = true, .d = {.value = value_data}};
+              bthome_measurement_record_t data{ .is_value = true, .d = {.value = value_data}};
               measurements.push_back(data);
             }
             break;
