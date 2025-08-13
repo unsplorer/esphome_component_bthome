@@ -138,7 +138,7 @@ namespace esphome
             default:
             {
               bthome_measurement_value_record_t value_data{measurement_type, value};
-              bthome_measurement_record_t data{true, .d = {.value = value_data}};
+              bthome_measurement_record_t data{ .flag = true, .d = {.value = value_data}};
               measurements.push_back(data);
             }
             break;
