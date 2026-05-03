@@ -65,19 +65,21 @@ namespace esphome
         ESP_LOGD(TAG,"Sender not in device list");
         auto buffer2 = (beethowen_base::beethowen_command_find_t *)buffer;
         uint8_t *client_mac = beethowen_base::sender;
-        ESP_LOGD(TAG, "---- Allowed device list ----");
-        ESP_LOGD(TAG, "Incoming sender: %s",
-                bthome_base::addr_to_str(beethowen_base::sender).c_str());
+        ESP_LOGD(TAG, "---- Allowed devices ----");
 
-        for (auto dev : this->devices_)
+        for (const auto &it : get_devices_debug())
         {
+          auto addr = it.first;
+          auto dev = it.second;
+
           ESP_LOGD(TAG,
                   "Device: %s  addr=%s  hex=0x%012llX",
                   dev->get_name_prefix().c_str(),
-                  bthome_base::addr64_to_str(dev->get_address()).c_str(),
-                  dev->get_address());
+                  bthome_base::addr64_to_str(addr).c_str(),
+                  addr);
         }
-        ESP_LOGD(TAG, "----------------------------");
+
+        ESP_LOGD(TAG, "------------------------");
         if (!get_device_by_address(bthome_base::addr_to_uint64(beethowen_base::sender)))
         {
           ESP_LOGD(TAG,"Adding sender to device list");

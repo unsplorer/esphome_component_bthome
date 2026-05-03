@@ -54,6 +54,10 @@ namespace esphome
         else
           return nullptr;
       }
+      const std::map<bthome_base::mac_address_t, BTHomeReceiverBaseDevice *>&get_devices_debug() const
+      {
+        return my_devices;
+      }
 
     private:
       DumpOption_e dump_option_{DumpOption_None};
