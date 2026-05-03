@@ -64,6 +64,10 @@ namespace esphome
       {
         auto buffer2 = (beethowen_base::beethowen_command_find_t *)buffer;
         uint8_t *client_mac = beethowen_base::sender;
+        if (!get_device_by_address(client_mac))
+        {
+          create_device(client_mac);   // <<< MISSING PIECE
+        }
         // TODO: consider sending the current wifi channel instead of the received one
         beethowen_base::send_command_find(client_mac, local_passkey_, buffer2->server_channel, false); // send ack
       }
