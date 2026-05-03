@@ -62,10 +62,12 @@ namespace esphome
       {
       case beethowen_base::BeethowenCommand_FindServerRequest:
       {
+        ESP_LOGD(TAG,"Sender not in device list");
         auto buffer2 = (beethowen_base::beethowen_command_find_t *)buffer;
         uint8_t *client_mac = beethowen_base::sender;
         if (!get_device_by_address(bthome_base::addr_to_uint64(beethowen_base::sender)))
         {
+          ESP_LOGD(TAG,"Adding sender to device list");
           create_device(bthome_base::addr_to_uint64(beethowen_base::sender));   // <<< MISSING PIECE
         }
         // TODO: consider sending the current wifi channel instead of the received one
