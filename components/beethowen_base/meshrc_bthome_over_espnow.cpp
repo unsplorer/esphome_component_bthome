@@ -124,30 +124,28 @@ namespace beethowen_base
 	}
 
 #if defined(USE_ESP32)
-	void sendHandler(const uint8_t *addr, esp_now_send_status_t sendStatus)
-#elif defined(USE_ESP8266)
-	esp_now_send_cb_t sendHandler = [](uint8_t *addr, uint8_t sendStatus)
-#endif
+	void sendHandler(const wifi_tx_info_t *info, esp_now_send_status_t status)
+	#elif defined(USE_ESP8266)
+	esp_now_send_cb_t sendHandler = [](uint8_t *addr, uint8_t status)
+	#endif
 	{
-		if
-#if defined(USE_ESP32)
-			(sendStatus == ESP_NOW_SEND_SUCCESS)
-#elif defined(USE_ESP8266)
-			(sendStatus == 0)
-#endif
+	#if defined(USE_ESP32)
+		if (status == ESP_NOW_SEND_SUCCESS)
+	#elif defined(USE_ESP8266)
+		if (status == 0)
+	#endif
 		{
-			// ESP_LOGD("custom", "meshRC message succesfully sent");
 			sending_success = true;
 		}
 		else
 		{
-			// ESP_LOGD("custom", "meshRC message not succesfully sent, status:%d", sendStatus);
 			sending_success = false;
 			sent_error++;
 		}
+
 		sending = false;
 		duration = micros() - sendTime;
-	}; // NOTE: ; is important to keep for ESP8266 lambda function type
+}; // NOTE: ; is important to keep for ESP8266 lambda function type
 // replace the ESP32 recv handler signature:
 #if defined(USE_ESP32)
 void recvHandler(const esp_now_recv_info *info, const uint8_t *data, int size)

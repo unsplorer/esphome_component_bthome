@@ -20,7 +20,9 @@ namespace beethowen_base
         BeethowenCommand_DataAck = 0x17,
     } BeethowenCommand_e;
 
-#define ESP_NOW_MAX_DATA_LEN 250
+#ifndef ESP_NOW_MAX_DATA_LEN
+    #define ESP_NOW_MAX_DATA_LEN 250
+#endif
 #define BEETHOWEN_MAGIC_HEADER_LEN 2
 #define BEETHOWEN_HEADER_LEN (sizeof(beethowen_base::beethowen_command_header_t)) /* +2 magic, +1 command, +2 passkey */
 #define BEETHOWEN_DATA_EXTRA_LEN (sizeof(uint8_t))                                /* +1 deviceinfo */
