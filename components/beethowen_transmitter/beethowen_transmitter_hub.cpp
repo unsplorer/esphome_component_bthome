@@ -246,7 +246,9 @@ namespace esphome
           encoder.buildPaket(bthome_data, bthome_data_len);
 
           this->on_send_started_callback_.call();
-          beethowen_base::send_command_data(get_server_address_arr(), local_passkey_, bthome_data, bthome_data_len);
+          // beethowen_base::send_command_data(get_server_address_arr(), local_passkey_, bthome_data, bthome_data_len);
+          // test sending to broadcast
+          beethowen_base::send_command_data(beethowen_base::broadcast, local_passkey_, bthome_data, bthome_data_len);
           this->send_datacmd_awaiting_ = true;
         }
       }
