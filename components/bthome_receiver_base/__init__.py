@@ -437,24 +437,24 @@ class Generator:
                                 measurement_type_record[CONF_ACCURACY_DECIMALS]
                             )
                         )
-                    if (
-                        measurement_type_record.get(CONF_UNIT_OF_MEASUREMENT)
-                        and not CONF_UNIT_OF_MEASUREMENT in config_item
-                    ):
-                        cg.add(
-                            var_item.set_unit_of_measurement(
-                                measurement_type_record[CONF_UNIT_OF_MEASUREMENT]
-                            )
-                        )
-                    if (
-                        measurement_type_record.get(CONF_DEVICE_CLASS)
-                        and not CONF_DEVICE_CLASS in config_item
-                    ):
-                        cg.add(
-                            var_item.set_device_class(
-                                measurement_type_record[CONF_DEVICE_CLASS]
-                            )
-                        )
+                    # if (
+                    #     measurement_type_record.get(CONF_UNIT_OF_MEASUREMENT)
+                    #     and not CONF_UNIT_OF_MEASUREMENT in config_item
+                    # ):
+                    #     cg.add(
+                    #         var_item.set_unit_of_measurement(
+                    #             measurement_type_record[CONF_UNIT_OF_MEASUREMENT]
+                    #         )
+                    #     )
+                    # if (
+                    #     measurement_type_record.get(CONF_DEVICE_CLASS)
+                    #     and not CONF_DEVICE_CLASS in config_item
+                    # ):
+                    #     cg.add(
+                    #         var_item.set_device_class(
+                    #             measurement_type_record[CONF_DEVICE_CLASS]
+                    #         )
+                    #     )
                     if (
                         measurement_type_record.get(CONF_ICON)
                         and not CONF_ICON in config_item
