@@ -40,6 +40,9 @@ namespace esphome
       auto client_mac_a64 = bthome_base::addr_to_uint64(beethowen_base::sender);
       auto device = static_cast<BeethowenReceiverDevice *>(get_device_by_address(client_mac_a64));
       auto buffer1 = (beethowen_base::beethowen_command_header_t *)buffer;
+      ESP_LOGD(TAG, "RAW CMD: 0x%02X size=%d from %s",
+         command, size,
+         bthome_base::addr_to_str(beethowen_base::sender).c_str());
 
 #if ESPHOME_LOG_LEVEL >= ESPHOME_LOG_LEVEL_DEBUG
       ESP_LOGD(TAG, "Command received: 0x%02x, from: %s, device: %s",
